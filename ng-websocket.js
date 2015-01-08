@@ -119,7 +119,7 @@
         };
 
         me.$$init = function (cfg) {
-            me.$$ws = cfg.mock ? new $$mockWebsocket(cfg.mock, $http, $timeout, $interval) : new WebSocket(cfg.url, cfg.protocols);
+            me.$$ws = cfg.mock ? new $$mockWebsocket(cfg.mock, $http, $timeout, $interval) : (cfg.protocols === null ? new WebSocket(cfg.url) : new WebSocket(cfg.url, cfg.protocols));
 
             me.$$ws.onmessage = function (message) {
                 try {
